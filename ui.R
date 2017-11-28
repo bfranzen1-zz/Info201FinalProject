@@ -7,7 +7,8 @@ ui <- fluidPage(
       tabsetPanel(
         tabPanel('Tab1', 'This is Tab 1'),
         tabPanel('Tab2', 'This is Tab 2'),
-        tabPanel('Tab3', 'This is Tab 3')
+        tabPanel('Tab3', 'This is Tab 3'),
+        tabPanel('Tab4', 'This is Tab 4')
       )
       
     )
