@@ -9,8 +9,12 @@ url <- "https://api-2445582011268.apicast.io/"
 #body <- content(response, "text")
 #data <- fromJSON(body)
 server <- function(input, output) {
-  output$game <- renderPrint({ input$game })
-  
+  names <- data.frame()
+  output$game <- renderPrint({ 
+    gameList <- games(input$game)
+    names <- nameList(gameList)
+    return(colnames(names))
+  })
   
   
   
