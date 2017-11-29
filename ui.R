@@ -1,4 +1,5 @@
 library(shiny)
+source('searchGame.R')
 ui <- fluidPage(
   titlePanel('Video Game Application'),
   sidebarLayout(

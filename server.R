@@ -1,6 +1,7 @@
 #get data using key 
 library(httr)
 library(jsonlite)
+source('searchGame.R')
 #add endpoint you want before running this code i.e.io/games/1942
 #this gives info on Witcher 3 
 url <- "https://api-2445582011268.apicast.io/"

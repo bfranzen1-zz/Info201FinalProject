@@ -21,3 +21,14 @@ gameName <- function(id) {
   data <- fromJSON(body)
   return(data$name)
 }
+
+#returns list of name/id pairs given list of id's
+nameList <- function(idList) {
+  names <- list()
+  for(id in idList) {
+    name <- gameName(id)
+    names[name] <- id
+  }
+  names <- as.data.frame(names)
+  return(names)
+}
