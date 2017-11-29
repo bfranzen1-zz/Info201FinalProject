@@ -13,7 +13,7 @@ server <- function(input, output) {
   output$game <- renderPrint({ 
     gameList <- games(input$game)
     names <- nameList(gameList)
-    return(colnames(names))
+    return(gsub('\\.', ' ', colnames(names)))
   })
   
   

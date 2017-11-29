@@ -9,7 +9,7 @@ ui <- fluidPage(
         tabPanel('Search for Game',
           textInput("game", "Game", "Search for Game"),
           submitButton("Search", icon("Submit")),
-          verbatimTextOutput("game")
+          textOutput("game")
         ),
           
         tabPanel('Tab2', 'This is Tab 2'),
