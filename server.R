@@ -13,9 +13,10 @@ server <- function(input, output) {
   output$game <- renderPrint({ 
     gameList <- games(input$game)
     names <- nameList(gameList)
-    return(gsub('\\.', ' ', colnames(names)))
+    nameList <- gsub('\\.', ' ', colnames(names))
+    output$choice <- renderUI({
+      selectInput("choices", "Choices", nameList)
+    })
   })
-  
-  
   
 }

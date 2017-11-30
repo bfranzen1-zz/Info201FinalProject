@@ -7,9 +7,10 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(
         tabPanel('Search for Game',
-          textInput("game", "Game", "Search for Game"),
+          textInput("game", "Game"),
           submitButton("Search", icon("Submit")),
-          textOutput("game")
+          textOutput("game"),
+          uiOutput("choice")
         ),
           
         tabPanel('Tab2', 'This is Tab 2'),
