@@ -9,14 +9,37 @@ url <- "https://api-2445582011268.apicast.io/"
 #body <- content(response, "text")
 #data <- fromJSON(body)
 server <- function(input, output) {
-  names <- data.frame()
-  output$game <- renderPrint({ 
-    gameList <- games(input$game)
-    names <- nameList(gameList)
-    nameList <- gsub('\\.', ' ', colnames(names))
-    output$choice <- renderUI({
-      selectInput("choices", "Choices", nameList)
+  data <- reactive({
+    if(input$search==0) return(NULL)
+    isolate({
+      gameList <- games(input$game)
+      names <- nameList(gameList)
     })
   })
+  output$choice <- renderUI({
+    names <- data()
+    selectInput("choices", "Choices", colnames(names))
+  })
   
+  output$page <- renderUI({
+    names <- data()
+    choice <- input$choices
+    id <- names[choice][[1]]
+    gameInfo <- gameData(id)
+    if (!is.null(gameInfo$rating)) {
+      gameInfo$rating <- paste0(round(as.numeric(gameInfo$rating)), "%") 
+    }
+    if (!is.null(gameInfo$release_dates)) {
+      gameInfo$release_dates[[1]][[5]][[1]] <- paste0("Release Date: ", gameInfo$release_dates[[1]][[5]][[1]])  
+    }
+    withTags({
+      div(class = "header", checked=NA,
+        h1(gameInfo$name),
+        h4(gameInfo$rating),
+        h4(gameInfo$release_dates[[1]][[5]][[1]]),
+        img(src=gameInfo$screenshots[[1]][[1]][[1]]),
+        p(gameInfo$summary)
+      )
+    })
+  })
 }

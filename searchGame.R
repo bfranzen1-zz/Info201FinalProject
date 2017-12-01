@@ -1,6 +1,16 @@
 library(httr)
 library(jsonlite)
 key <- '240369357eb62e10e6d8cffc39b8eef5'
+
+#function that returns game data
+gameData <- function(id) {
+  url <- paste0("https://api-2445582011268.apicast.io/games/", id)
+  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
+  body <- content(response, "text")
+  data <- fromJSON(body)
+  return(data)
+}
+
 #function that returns list of id's of games
 #related to game parameter
 games <- function(game) {
@@ -15,10 +25,7 @@ games <- function(game) {
 #function that returns name of game
 #based on id given
 gameName <- function(id) {
-  url <- paste0("https://api-2445582011268.apicast.io/games/", id)
-  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
-  body <- content(response, "text")
-  data <- fromJSON(body)
+  data <- gameData(id)
   return(data$name)
 }
 
@@ -30,5 +37,6 @@ nameList <- function(idList) {
     names[name] <- id
   }
   names <- as.data.frame(names)
+  colnames(names) <- gsub('\\.', ' ', colnames(names))
   return(names)
 }
