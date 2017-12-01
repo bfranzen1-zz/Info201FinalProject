@@ -13,7 +13,13 @@ ui <- fluidPage(
           uiOutput("choice")
         ),
           
-        tabPanel('Tab2', 'This is Tab 2'),
+        tabPanel('Game Comparison', 
+                textInput("compare", "Game to Compare"),
+                submitButton("compSearch", icon("Search")),
+                textOutput("comparisons"),
+                
+                  ),
+        
         tabPanel('Tab3', 'This is Tab 3'),
         tabPanel('Tab4', 'This is Tab 4')
       )

@@ -2,6 +2,7 @@
 library(httr)
 library(jsonlite)
 source('searchGame.R')
+source("gameComparison.R")
 #add endpoint you want before running this code i.e.io/games/1942
 #this gives info on Witcher 3 
 url <- "https://api-2445582011268.apicast.io/"
@@ -17,6 +18,9 @@ server <- function(input, output) {
     output$choice <- renderUI({
       selectInput("choices", "Choices", nameList)
     })
+  })
+  output$comparisons <- renderPlot({
+    
   })
   
 }
