@@ -16,8 +16,7 @@ ui <- fluidPage(
           
         tabPanel('Game Comparison', 
                 textInput("compare", "Game to Compare"),
-                submitButton("compSearch", icon("Search")),
-                textOutput("comparisons"),
+                textOutput("comparisons")
                 
                   ),
         
