@@ -1,0 +1,13 @@
+name: videogamedb
+title: VideoGameDB
+username:
+account: bfranzen
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 242465
+bundleId: 1107857
+url: https://bfranzen.shinyapps.io/videogamedb/
+when: 1512101923.2359
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md
