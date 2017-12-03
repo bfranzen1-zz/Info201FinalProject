@@ -1,6 +1,6 @@
 library(httr)
 library(jsonlite)
-key <- '240369357eb62e10e6d8cffc39b8eef5'
+key <- '1e77be878f94bcb2dd00528efadc4d5a'
 
 #function that returns game data
 gameData <- function(id) {
@@ -52,9 +52,12 @@ idToName <- function(idList, type) {
   response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
   body <- content(response, "text")
   data <- fromJSON(body)
-  names <- data$name[1]
-  for (s in data$name[2:length(data$name)]) {
-    names <- paste(names, s, sep=", ")
+  names <- ""
+  if (!is.null(data)) {
+    names <- data$name[1]
+    for (s in data$name[2:length(data$name)]) {
+      names <- paste(names, s, sep=", ")
+    }
   }
   return(names)
 }

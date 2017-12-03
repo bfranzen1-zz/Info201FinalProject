@@ -2,7 +2,7 @@ library(httr)
 library(jsonlite)
 library(dplyr)
 library(magrittr)
-key <- '240369357eb62e10e6d8cffc39b8eef5'
+key <- '1e77be878f94bcb2dd00528efadc4d5a'
 #function that takes in a game name and category and returns
 #the top 5 games related to that game and category (e.g. top 5 games made by the company of
 #game X)
