@@ -13,7 +13,7 @@ compareDev <- function(id) {
   data <- fromJSON(body)
   #Above is getting the developer ID and putting it in data
   
-  url <- paste0("https://api-2445582011268.apicast.io/companies/", data$companies[1], "?&fields=developed")
+  url <- paste0("https://api-2445582011268.apicast.io/companies/", data$developers[[1]], "?&fields=developed")
   response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
   body <- content(response, "text")
   devedIds <- fromJSON(body)
@@ -39,3 +39,14 @@ findGameNames <- function(gameList){
 
 #devData <- compareDev(8173)
 
+#Function that takes field (endpoint in API) to compare with, id of that field, and
+#the fieldName and returns a dataframe containing the id, name, and field value of the
+#top 5 games for that specified field based on total_rating
+compareField <- function(field, fieldId, rating) {
+  url <- paste0("https://api-2445582011268.apicast.io/games/?fields=name,", rating, "&order=", 
+                rating, ":desc&filter[", field, "]=", fieldId, "&limit=5")
+  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
+  body <- content(response, "text")
+  data <- fromJSON(body)
+  
+}
