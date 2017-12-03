@@ -40,3 +40,21 @@ nameList <- function(idList) {
   colnames(names) <- gsub('\\.', ' ', colnames(names))
   return(names)
 }
+
+#function that takes in list of id's and a desired field with '/'
+#and returns the names associated with those id's
+idToName <- function(idList, type) {
+  param <- idList[1]
+  for(id in idList[2:length(idList)]) {
+    param <- paste0(param, ",", id)
+  }
+  url <- paste0("https://api-2445582011268.apicast.io/", type, param, "?fields=name")
+  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
+  body <- content(response, "text")
+  data <- fromJSON(body)
+  plat <- data$name[1]
+  for (p in data$name[2:length(data$name)]) {
+    plat <- paste(plat, p, sep=", ")
+  }
+  return(plat)
+}
