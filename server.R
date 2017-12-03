@@ -44,6 +44,7 @@ server <- function(input, output) {
       if (!is.null(gameInfo$themes)) {
         gameInfo$themes <- idToName(gameInfo$themes[[1]], "themes/")
       }
+      gameInfo$screenshots[[1]][[1]][[1]] <- gsub("t_thumb", "t_screenshot_big", gameInfo$screenshots[[1]][[1]][[1]])
       withTags({
         div(
           h1(gameInfo$name),
@@ -81,12 +82,12 @@ server <- function(input, output) {
          ylab("Rating(%)") + xlab("Name of Game")
     }
     #plot for genres
-    if(!is.null(gameInfo$genres)) {
+    #if(!is.null(gameInfo$genres)) {
       
-    }
+    #}
     #plot for themes
-    if(!is.null(gameInfo$themes)) {
+    #if(!is.null(gameInfo$themes)) {
       
-    }
+    #}
   })
 }
