@@ -37,6 +37,9 @@ server <- function(input, output) {
         h1(gameInfo$name),
         h3(paste(gameInfo$total_rating, gameInfo$total_rating_count)),
         h4(gameInfo$release_dates[[1]][[5]][[1]]),
+        h5(idToName(gameInfo$platforms[[1]], "platforms/")),
+        h5(idToName(gameInfo$themes[[1]], "themes/")),
+        h5(idToName(gameInfo$genres[[1]], "genres/")),
         img(src=gameInfo$screenshots[[1]][[1]][[1]]),
         p(gameInfo$summary),
         a(href=gameInfo$url, "More Information here!")

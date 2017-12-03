@@ -52,9 +52,9 @@ idToName <- function(idList, type) {
   response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
   body <- content(response, "text")
   data <- fromJSON(body)
-  plat <- data$name[1]
-  for (p in data$name[2:length(data$name)]) {
-    plat <- paste(plat, p, sep=", ")
+  names <- data$name[1]
+  for (s in data$name[2:length(data$name)]) {
+    names <- paste(names, s, sep=", ")
   }
-  return(plat)
+  return(names)
 }

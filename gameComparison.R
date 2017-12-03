@@ -12,13 +12,13 @@ compareDev <- function(id) {
   body <- content(response, "text")
   data <- fromJSON(body)
   #Above is getting the developer ID and putting it in data
-  data
   
   url <- paste0("https://api-2445582011268.apicast.io/companies/", data$companies[1], "?&fields=developed")
   response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
   body <- content(response, "text")
   devedIds <- fromJSON(body)
-  gameList <- findGameNames(devedIds)
+  print(devedIds[[1]])
+  gameList <- findGameNames(devedIds[[1]])
   gameList <- arrange(gameList$popularity) %>% filter(popularity >= gameList$popularity[5])
   return(gameList)
 }
@@ -37,5 +37,5 @@ findGameNames <- function(gameList){
   return(df)
 }
 
-devData <- compareDev(8173)
+#devData <- compareDev(8173)
 
