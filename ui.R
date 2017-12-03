@@ -1,5 +1,6 @@
 library(shiny)
 source('searchGame.R')
+
 ui <- fluidPage(
   titlePanel('Video Game Application'),
   sidebarLayout(
@@ -9,16 +10,16 @@ ui <- fluidPage(
         tabPanel('Search for Game',
           textInput("game", "Game"),
           actionButton("search", "Search"),
-          uiOutput("game"),
           uiOutput("choice"),
-          uiOutput("page")
+          uiOutput("page"),
+          plotOutput("comparisons")
         ),
           
-        tabPanel('Game Comparison', 
-                textInput("compare", "Game to Compare"),
-                textOutput("comparisons")
+        #tabPanel('Game Comparison', 
+                #textInput("compare", "Game to Compare"),
+                #textOutput("comparisons")
                 
-                  ),
+        #          ),
         
         tabPanel('Tab3', 'This is Tab 3'),
         tabPanel('Tab4', 'This is Tab 4')
