@@ -1,6 +1,7 @@
 #get data using key 
 library(httr)
 library(jsonlite)
+library(ggplot2)
 source('searchGame.R')
 source("gameComparison.R")
 # published url https://bfranzen.shinyapps.io/videogamedb/
@@ -73,8 +74,8 @@ server <- function(input, output) {
   output$comparisons <- renderPlot({
     gameInfo <- game()
     #plot for company/developer
-    if(!is.null(gameInfo$developers)) {
-      devData <- compareField("developers", gameInfo$developers[[1]][1], 5)
+    if(!is.null(gameInfo$developers) & input$compareField == "Developer") {
+      devData <- compareField("developers", gameInfo$developers[[1]][1],5)
       devName <- idToName(gameInfo$developers[[1]], "companies/")
       ggplot(devData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
        geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
@@ -82,9 +83,14 @@ server <- function(input, output) {
          ylab("Rating(%)") + xlab("Name of Game")
     }
     #plot for genres
-    #if(!is.null(gameInfo$genres)) {
-      
-    #}
+    else if(!is.null(gameInfo$genres) & input$compareField == "Genre") {
+      genreData <- compareField("genres", gameInfo$genres[[1]][1],5)
+      genreName <- idToName(gameInfo$genres[[1]][1], "genres/")
+      ggplot(genreData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+        geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
+        coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison against top five games from the genre ", genreName)) +
+        ylab("Rating(%)") + xlab("Name of Game")
+    }
     #plot for themes
     #if(!is.null(gameInfo$themes)) {
       
