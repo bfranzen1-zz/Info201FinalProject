@@ -12,5 +12,5 @@ compareField <- function(field, fieldId, limit) {
                 field, "][eq]=", fieldId, "&limit=", limit)
   response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
   body <- content(response, "text")
-  data <- fromJSON(body)
+  return(fromJSON(body))
 }

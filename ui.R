@@ -8,7 +8,7 @@ ui <- fluidPage(
         sidebarLayout(
           sidebarPanel(
             radioButtons("compareField", "Compare By:", 
-                         c("Developer", "Genre", "Year"))
+                         c("Developer", "Genre", "Theme"))
           ),
           mainPanel(
             textInput("game", "Game"),
