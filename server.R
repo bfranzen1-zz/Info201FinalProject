@@ -110,23 +110,27 @@ server <- function(input, output) {
   
   output$categoryChoices <- renderUI({
     catData <- categoryData()
-    cat <- filter(catData, name == input$category)
+    cat <- filter(catData, name == input$categoryField)
     selectInput("categories", "Category", getCategoryIds(cat$value)$name)
   })
   
   output$categoryPlot <- renderPlot({
-    if(input$category == "Genre") {
+    catData <- categoryData()
+    cat <- filter(catData, name == input$categoryField)
+    catIds <- getCategoryIds(cat$value)
+    catId <- filter(catIds, name == input$categories)
+    if(input$categoryField == "Genre") {
+      plotDataTop("genres", catId$id, cat$name, "genres/")
+    } else if (input$categoryField == "Year") {
       
-    } else if (input$category == "Year") {
+    } else if (input$categoryField == "Company") {
+      plotDataTop("developers", catId$id, cat$name, "companies/")
+    } else if (input$categoryField == "Game Engine") {
+      plotDataTop("game_engines", catId$id, cat$name, "game_engines/")
+    } else if (input$categoryField == "Platform") {
       
-    } else if (input$category == "Company") {
-      
-    } else if (input$category == "Game Engine") {
-      
-    } else if (input$category == "Platform") {
-      
-    } else if (input$category == "Theme") {
-      
+    } else if (input$categoryField == "Theme") {
+      plotDataTop("themes", catId$id, cat$name, "themes/")
     }
     
   })
