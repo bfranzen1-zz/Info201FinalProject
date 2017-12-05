@@ -4,6 +4,15 @@ source('searchGame.R')
 ui <- fluidPage(
   titlePanel('Video Game Application'),
     tabsetPanel(
+      tabPanel('About', 
+               h3("What is this?"),
+               'Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game.
+                In addition, we provide several filters that allow
+                users to compare top rated games through the use of several categories.
+                We hope you enjoy this app!',h5("Source Code:"), a(href='https://github.com/bfranzen1/Info201FinalProject', 'Github Repo'),
+                h5("Big Thanks to 8 Dudes in a Garage for giving us Open Source access to the api from:"), a(href='https://api.igdb.com/', 'IGDB')
+      ),
+      
       tabPanel('Search for Game',
         fluidRow(
           column(width = 3,
@@ -37,12 +46,6 @@ ui <- fluidPage(
                    plotOutput("categoryPlot"))
                )
       ),
-      
-      tabPanel('About', h3("What is this?"),'Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game. In addition, we provide several filters that allow
-               users to compare top rated games through the use of several categories. We hope you enjoy this app!',h5("Source Code:"), 'https://github.com/bfranzen1/Info201FinalProject',
-               h5("Api Courtesy of:"), 'IGDB.com'
-      ),
-
       
       tabPanel('Tab4', 'This is Tab 4')
     )
