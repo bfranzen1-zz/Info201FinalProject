@@ -73,6 +73,7 @@ server <- function(input, output) {
   
   output$comparisons <- renderPlot({
     gameInfo <- game()
+    
     #plot for company/developer
     if(!is.null(gameInfo$developers) & input$compareField == "Developer") {
       devData <- compareField("developers", gameInfo$developers[[1]][1],5)
@@ -127,6 +128,9 @@ server <- function(input, output) {
         geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
         coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games made on ", franchiseName)) +
         ylab("Rating(%)") + xlab("Name of Game")
+    }
+    else{
+      print("")
     }
   })
 }

@@ -5,20 +5,21 @@ ui <- fluidPage(
   titlePanel('Video Game Application'),
     tabsetPanel(
       tabPanel('Search for Game',
-        sidebarLayout(
-          sidebarPanel(
-            radioButtons("compareField", "Compare By:", 
-                         c("Developer", "Genre", "Theme", "Year", "Platform", "Franchise"))
-          ),
-          mainPanel(
+        fluidRow(
+          column(width = 3,
             textInput("game", "Game"),
             actionButton("search", "Search"),
             uiOutput("choice"),
-            uiOutput("page"),
-            plotOutput("comparisons")
+            radioButtons("compareField", "Compare By:", 
+                         c("Developer", "Genre", "Theme", "Year", "Platform", "Franchise"))
+          ),
+          column(width = 8, offset = 1,
+             plotOutput("comparisons")
           )
+        ),
+        fluidRow(
+            uiOutput("page")
         )
-        
       ),
         
       #tabPanel('Top', 
@@ -30,5 +31,4 @@ ui <- fluidPage(
       tabPanel('Tab3', 'This is Tab 3'),
       tabPanel('Tab4', 'This is Tab 4')
     )
-    
 )
