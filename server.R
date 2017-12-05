@@ -4,6 +4,7 @@ library(jsonlite)
 library(ggplot2)
 source('searchGame.R')
 source("gameComparison.R")
+source('top.R')
 # published url https://bfranzen.shinyapps.io/videogamedb/
 server <- function(input, output) {
   data <- reactive({
@@ -105,5 +106,28 @@ server <- function(input, output) {
     else{
       print("")
     }
+  })
+  
+  output$categoryChoices <- renderUI({
+    catData <- categoryData()
+    cat <- filter(catData, name == input$category)
+    selectInput("categories", "Category", getCategoryIds(cat$value)$name)
+  })
+  
+  output$categoryPlot <- renderPlot({
+    if(input$category == "Genre") {
+      
+    } else if (input$category == "Year") {
+      
+    } else if (input$category == "Company") {
+      
+    } else if (input$category == "Game Engine") {
+      
+    } else if (input$category == "Platform") {
+      
+    } else if (input$category == "Theme") {
+      
+    }
+    
   })
 }

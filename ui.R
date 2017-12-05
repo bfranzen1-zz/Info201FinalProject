@@ -22,11 +22,21 @@ ui <- fluidPage(
         )
       ),
         
-      #tabPanel('Top', 
-              #uiOutput("category"),
-              #plotOutput("categoryPlot")
-              
-               #),
+      tabPanel('Search Top Games',
+               sidebarLayout(
+                 sidebarPanel(
+                   radioButtons("category", "Categories:", c("Genre", 
+                                                             "Year", 
+                                                             "Company", 
+                                                             "Game Engine", 
+                                                             "Platform", 
+                                                             "Theme"))
+                 ),
+                 mainPanel(
+                   uiOutput("categoryChoices"),
+                   plotOutput("categoryPlot"))
+               )
+      ),
       
       tabPanel('Tab3', 'This is Tab 3'),
       tabPanel('Tab4', 'This is Tab 4')
