@@ -14,3 +14,15 @@ compareField <- function(field, fieldId, limit) {
   body <- content(response, "text")
   return(fromJSON(body))
 }
+
+#function that takes in field, fieldName, gameValue, and gameData and 
+#returns a plot that contains the top five games from that field
+#compared to the game from gameData and the field that equals gameValue
+plotData <- function(field, gameValue, gameData, fieldName, field2) {
+  data <- compareField(field, gameValue, 5)
+  name <- idToName(gameValue, field2)
+  ggplot(data) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+    geom_bar(data=gameData, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
+    coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games for ", name, " ", fieldName)) +
+    ylab("Rating(%)") + xlab("Name of Game")
+}
