@@ -8,7 +8,7 @@ ui <- fluidPage(
         sidebarLayout(
           sidebarPanel(
             radioButtons("compareField", "Compare By:", 
-                         c("Developer", "Genre", "Theme"))
+                         c("Developer", "Genre", "Theme", "Year", "Platform", "Franchise"))
           ),
           mainPanel(
             textInput("game", "Game"),
@@ -21,11 +21,11 @@ ui <- fluidPage(
         
       ),
         
-      #tabPanel('Game Comparison', 
-              #textInput("compare", "Game to Compare"),
-              #textOutput("comparisons")
+      #tabPanel('Top', 
+              #uiOutput("category"),
+              #plotOutput("categoryPlot")
               
-      #          ),
+               #),
       
       tabPanel('Tab3', 'This is Tab 3'),
       tabPanel('Tab4', 'This is Tab 4')

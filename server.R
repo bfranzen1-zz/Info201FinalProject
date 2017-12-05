@@ -103,5 +103,30 @@ server <- function(input, output) {
         ylab("Rating(%)") + xlab("Name of Game")
     }
     
+    else if(input$compareField == "Year") {
+      yearData <- compareField("release_dates.y", gameInfo$release_dates[[1]][[6]][[1]],5)
+      ggplot(yearData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+        geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
+        coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games from ", gameInfo$release_dates[[1]][[6]][[1]])) +
+        ylab("Rating(%)") + xlab("Name of Game")
+    }
+    
+    else if(input$compareField == "Platform") {
+      platformData <- compareField("release_dates.platform", gameInfo$platforms[[1]][2],5)
+      platformName <- idToName(gameInfo$platforms[[1]][1], "platforms/")
+      ggplot(platformData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+        geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
+        coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games made on ", platformName)) +
+        ylab("Rating(%)") + xlab("Name of Game")
+    }
+    
+    else if(!is.null(gameInfo$franchise) & input$compareField == "Franchise") {
+      franchiseData <- compareField("franchises", gameInfo$franchise,5)
+      franchiseName <- idToName(gameInfo$franchise, "franchises/")
+      ggplot(franchiseData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+        geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
+        coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games made on ", franchiseName)) +
+        ylab("Rating(%)") + xlab("Name of Game")
+    }
   })
 }
