@@ -38,7 +38,12 @@ ui <- fluidPage(
                )
       ),
       
-      tabPanel('Tab3', 'This is Tab 3'),
+      tabPanel('About', h3("What is this?"),'Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game. In addition, we provide several filters that allow
+               users to compare top rated games through the use of several categories. We hope you enjoy this app!',h5("Source Code:"), 'https://github.com/bfranzen1/Info201FinalProject',
+               h5("Api Courtesy of:"), 'IGDB.com'
+      ),
+
+      
       tabPanel('Tab4', 'This is Tab 4')
     )
 )

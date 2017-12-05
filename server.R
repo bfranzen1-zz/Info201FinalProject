@@ -17,12 +17,8 @@ server <- function(input, output) {
       }) 
     }
   })
-  game <- reactive({
-    names <- data()
-    choice <- input$choices
-    id <- names[choice][[1]]
-    return(gameData(id))
-  })
+
+  
   output$choice <- renderUI({
     names <- data()
     selectInput("choices", "Choices", colnames(names))
@@ -108,10 +104,19 @@ server <- function(input, output) {
     }
   })
   
+  #function that renders choices for chosen categories 
   output$categoryChoices <- renderUI({
     catData <- categoryData()
     cat <- filter(catData, name == input$category)
     selectInput("categories", "Category", getCategoryIds(cat$value)$name)
+  })
+  
+  #funtion that calls another function in top.R and returns a list of the top five games within a given category and filter
+  topGames <- reactive({
+    names <- data()
+    choice <- input$categories
+    id <- names[choice][[1]]
+    return(gameData(id))
   })
   
   output$categoryPlot <- renderPlot({
