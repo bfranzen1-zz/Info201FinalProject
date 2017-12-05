@@ -13,24 +13,13 @@ getCategoryIds <- function(category) {
   return(data)
 }
 
-topOfCategory <- function(field, fieldId, limit) {
-  url <- paste0("https://api-2445582011268.apicast.io/games/?fields=name,total_rating,release_dates&order=total_rating:desc&filter[", 
-                field, "][any]=", fieldId, "&limit=", limit)
-  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
-  body <- content(response, "text")
-  data <- fromJSON(body)
-  return(data)
+plotDataTop <- function(field, id, fieldName, field2) {
+  data <- compareField(field, id, 5)
+  name <- idToName(id, field2)
+  ggplot(data) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
+    coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games for ", fieldName)) +
+    ylab("Rating(%)") + xlab("Name of Game")
 }
-
-#createPlot() <- function() {
- # catData <- categoryData()
-  #categoryData <- topOfCategory(catData$value, gameInfo$platforms[[1]][2],5)
-  #platformName <- idToName(gameInfo$platforms[[1]][1], "platforms/")
-  #ggplot(platformData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-   # geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
-    #coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games made on ", platformName)) +
-    #ylab("Rating(%)") + xlab("Name of Game")
-#}
 
 platformData <- function() {
   platforms <- data.frame(name = c("iOS",

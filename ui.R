@@ -25,7 +25,7 @@ ui <- fluidPage(
       tabPanel('Search Top Games',
                sidebarLayout(
                  sidebarPanel(
-                   radioButtons("category", "Categories:", c("Genre", 
+                   radioButtons("categoryField", "Categories:", c("Genre", 
                                                              "Year", 
                                                              "Company", 
                                                              "Game Engine", 
