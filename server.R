@@ -70,37 +70,16 @@ server <- function(input, output) {
     #plot for company/developer
     if(!is.null(gameInfo$developers) & input$compareField == "Developer") {
       plotData("developers", gameInfo$developers[[1]][1], gameInfo, input$compareField, "companies/")
-      
-      #devData <- compareField("developers", gameInfo$developers[[1]][1],5)
-      #devName <- idToName(gameInfo$developers[[1]][1], "companies/")
-      #ggplot(devData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-      # geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
-      #  coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games from ", devName)) +
-      #   ylab("Rating(%)") + xlab("Name of Game")
     }
     
     #plot for genres
     else if(!is.null(gameInfo$genres) & input$compareField == "Genre") {
       plotData("genres", gameInfo$genres[[1]][1], gameInfo, input$compareField, "genres/")
-      
-      #genreData <- compareField("genres", gameInfo$genres[[1]][1],5)
-      #genreName <- idToName(gameInfo$genres[[1]][1], "genres/")
-      #ggplot(genreData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-      #  geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
-      #  coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games in the ", tolower(genreName), " genre")) +
-      #  ylab("Rating(%)") + xlab("Name of Game")
     }
     
     #plot for theme
     else if(!is.null(gameInfo$themes) & input$compareField == "Theme") {
       plotData("themes", gameInfo$themes[[1]][1], gameInfo, input$compareField, "themes/")
-      
-      #themeData <- compareField("themes", gameInfo$themes[[1]][1],5)
-      #themeName <- idToName(gameInfo$themes[[1]][1], "themes/")
-      #ggplot(themeData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-      #  geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
-      #  coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games with a(n) ", tolower(themeName), " theme")) +
-      # ylab("Rating(%)") + xlab("Name of Game")
     }
     
     else if(input$compareField == "Year") {
@@ -122,14 +101,6 @@ server <- function(input, output) {
     
     else if(!is.null(gameInfo$franchise) & input$compareField == "Franchise") {
       plotData("franchises", gameInfo$franchise, gameInfo, input$compareField, "franchises/")
-      
-      
-      #franchiseData <- compareField("franchises", gameInfo$franchise,5)
-      #franchiseName <- idToName(gameInfo$franchise, "franchises/")
-      #ggplot(franchiseData) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-      #  geom_bar(data=gameInfo, aes(x=name, y=total_rating), stat="identity", fill="red4") + 
-      #  coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games made on ", franchiseName)) +
-      #  ylab("Rating(%)") + xlab("Name of Game")
     }
     else{
       print("")
