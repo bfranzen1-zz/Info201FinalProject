@@ -3,6 +3,11 @@ library(jsonlite)
 library(dplyr)
 library(magrittr)
 library(ggplot2)
+<<<<<<< Updated upstream
+=======
+
+key <- '240369357eb62e10e6d8cffc39b8eef5'
+>>>>>>> Stashed changes
 
 topData <- function(field, fieldId, year, limit) {
   url <- paste0("https://api-2445582011268.apicast.io/games/?fields=name,total_rating&order=total_rating:desc&filter[", 
