@@ -4,6 +4,7 @@ source('searchGame.R')
 ui <- fluidPage(
   titlePanel('Video Game Application'),
     tabsetPanel(
+      #gives information about application
       tabPanel('About', 
                h3("What is this?"),
                'Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game.
@@ -13,6 +14,7 @@ ui <- fluidPage(
                 h5("Big Thanks to 8 Dudes in a Garage for giving us Open Source access to the api from:"), a(href='https://api.igdb.com/', 'IGDB')
       ),
       
+      #displays ui that lets user search for a game 
       tabPanel('Search for Game',
         fluidRow(
           column(width = 3,
@@ -30,7 +32,7 @@ ui <- fluidPage(
             uiOutput("page")
         )
       ),
-        
+      #displays ui that lets user search for top games from a category  
       tabPanel('Search Top Games',
                sidebarLayout(
                  sidebarPanel(

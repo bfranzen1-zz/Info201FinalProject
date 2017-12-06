@@ -1,12 +1,13 @@
-#get data using key 
 library(httr)
 library(jsonlite)
 library(ggplot2)
 source('searchGame.R')
 source("gameComparison.R")
 source('top.R')
-# published url https://bfranzen.shinyapps.io/videogamedb/
 server <- function(input, output) {
+  #checks if search button is clicked
+  #does nothing if not, otherwise
+  #gets list of games based on text in search
   data <- reactive({
     if(input$search==0) {
       return(NULL)
@@ -17,6 +18,8 @@ server <- function(input, output) {
       }) 
     }
   })
+  #gets game data from game that was
+  #selected from drop down
   game <- reactive({
        names <- data()
        choice <- input$choices
@@ -24,11 +27,14 @@ server <- function(input, output) {
        return(gameData(id))
     })
   
+  #displays drop down of games based on search text
   output$choice <- renderUI({
     names <- data()
     selectInput("choices", "Choices", colnames(names))
   })
   
+  #outputs UI page containing information about game
+  #selected form drop down 
   output$page <- renderUI({
     gameInfo <- game()
     if(!is.null(gameInfo$summary)) {
@@ -66,6 +72,8 @@ server <- function(input, output) {
     }
   })
   
+  #compares current game from drop down against
+  #radio button selected (developers, genres, themes, year, platform, franchise)
   output$comparisons <- renderPlot({
     gameInfo <- game()
     
@@ -116,6 +124,7 @@ server <- function(input, output) {
     selectInput("categories", "Category", getCategoryIds(cat$value)$name)
   })
   
+  #renders plot of top five games from selected category
   output$categoryPlot <- renderPlot({
     catData <- categoryData()
     cat <- filter(catData, name == input$categoryField)
