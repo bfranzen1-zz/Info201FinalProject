@@ -1,6 +1,5 @@
 library(shiny)
 library(plotly)
-source('searchGame.R')
 
 ui <- fluidPage(
   titlePanel('Video Game Application'),

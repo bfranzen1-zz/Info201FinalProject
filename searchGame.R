@@ -1,7 +1,5 @@
 library(httr)
 library(jsonlite)
-key <- '240369357eb62e10e6d8cffc39b8eef5'
-
 #function that returns game data
 gameData <- function(id) {
   url <- paste0("https://api-2445582011268.apicast.io/games/", id)
