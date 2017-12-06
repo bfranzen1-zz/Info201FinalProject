@@ -1,0 +1,79 @@
+h1 {
+  color: white;
+  margin-bottom:2%;
+}
+
+h5,h3,h2 {
+  color: white;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+ p{
+   color: #999999;
+  margin-right: 3%;
+  margin-left: 3%;
+ }
+body {
+  background-color: black;
+}
+
+a {
+  color:#999999;
+  padding-left: 3%;
+}
+
+label{
+  color: white;
+}
+
+input {
+    color: green;
+}
+
+.tab-content{
+  background-color: #212121;
+}
+
+#comparisons{
+  color: #212121;
+}
+
+form.well{
+  background-color: #212121; 
+  border: 0px solid;
+  padding-left: 12%;
+  padding-top:0%;
+}
+
+#page{
+  color: #999999;
+  padding-left:5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.btn{
+  background-color: green;
+  color: white;
+  border: 0px solid;
+}
+
+.nav-tabs>li.active>a{
+  color: white;
+  background-color: green;
+  border: none;
+}
+
+.col-sm-3{
+  padding-left:5%;
+  padding-top:2%;
+}
+
+label.control-label{
+  padding-top: 10%;
+}
+
+img{
+  margin-top:6.25%;
+  padding-right: 6%;
+}

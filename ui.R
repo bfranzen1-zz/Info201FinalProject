@@ -1,16 +1,17 @@
 library(shiny)
 library(plotly)
 
-ui <- fluidPage(
-  titlePanel('Video Game Application'),
+ui <- fluidPage(tags$head(
+  tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
+  titlePanel(h1('Video Game Application')),
     tabsetPanel(
       #gives information about application
       tabPanel('About', 
                h3("What is this?"),
-               'Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game.
+               tags$p('Our application is aimed to give game enthusiasts a simple tool to search basic information about a video game.
                 In addition, we provide several filters that allow
                 users to compare top rated games through the use of several categories.
-                We hope you enjoy this app!',h5("Source Code:"), a(href='https://github.com/bfranzen1/Info201FinalProject', 'Github Repo'),
+                We hope you enjoy this app!'),h5("Source Code:"), a(href='https://github.com/bfranzen1/Info201FinalProject', 'Github Repo'),
                 h5("Big Thanks to 8 Dudes in a Garage for giving us Open Source access to the api from:"), a(href='https://api.igdb.com/', 'IGDB')
       ),
       
