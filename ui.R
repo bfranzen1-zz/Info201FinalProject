@@ -47,8 +47,6 @@ ui <- fluidPage(
                    uiOutput("categoryChoices"),
                    plotOutput("categoryPlot"))
                )
-      ),
-      
-      tabPanel('Tab4', 'This is Tab 4')
+      )
     )
 )
