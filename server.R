@@ -125,23 +125,21 @@ server <- function(input, output) {
   })
   
   #renders plot of top five games from selected category
-  output$categoryPlot <- renderPlot({
+  output$categoryPlot <- renderPlotly({
     catData <- categoryData()
     cat <- filter(catData, name == input$categoryField)
     catIds <- getCategoryIds(cat$value)
     catId <- filter(catIds, name == input$categories)
     if(input$categoryField == "Genre") {
-      plotDataTop("genres", catId$id, cat$name, "genres/")
-    } else if (input$categoryField == "Year") {
-      
+      plotDataTop("genres", catId$id, cat$name, "genres/", input$yearSlider, input$countSlider)
     } else if (input$categoryField == "Company") {
-      plotDataTop("developers", catId$id, cat$name, "companies/")
+      plotDataTop("developers", catId$id, cat$name, "companies/", input$yearSlider, input$countSlider)
     } else if (input$categoryField == "Game Engine") {
-      plotDataTop("game_engines", catId$id, cat$name, "game_engines/")
+      plotDataTop("game_engines", catId$id, cat$name, "game_engines/", input$yearSlider, input$countSlider)
     } else if (input$categoryField == "Platform") {
-      
+      plotDataTop("release_dates.platform", catId$id, cat$name, "platforms/", input$yearSlider, input$countSlider)
     } else if (input$categoryField == "Theme") {
-      plotDataTop("themes", catId$id, cat$name, "themes/")
+      plotDataTop("themes", catId$id, cat$name, "themes/", input$yearSlider, input$countSlider)
     }
     
   })

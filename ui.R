@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 source('searchGame.R')
 
 ui <- fluidPage(
@@ -36,16 +37,27 @@ ui <- fluidPage(
       tabPanel('Search Top Games',
                sidebarLayout(
                  sidebarPanel(
-                   radioButtons("categoryField", "Categories:", c("Genre", 
-                                                             "Year", 
-                                                             "Company", 
-                                                             "Game Engine", 
-                                                             "Platform", 
-                                                             "Theme"))
+                   radioButtons("categoryField", "Categories:", c("Genre",
+                                                                  "Company", 
+                                                                  "Game Engine", 
+                                                                  "Platform", 
+                                                                  "Theme")),
+                   sliderInput("yearSlider",
+                               "Year:",
+                               min = 1972,
+                               max = 2017,
+                               value = c(1972,2017),
+                               step = 1),
+                   sliderInput("countSlider",
+                               "Number of Games:",
+                               min = 1,
+                               max = 50,
+                               value = 10,
+                               step = 1)
                  ),
                  mainPanel(
                    uiOutput("categoryChoices"),
-                   plotOutput("categoryPlot"))
+                   plotlyOutput("categoryPlot"))
                )
       )
     )

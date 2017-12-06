@@ -3,39 +3,15 @@ library(jsonlite)
 library(dplyr)
 library(magrittr)
 key <- '240369357eb62e10e6d8cffc39b8eef5'
-#data frame of popular video game platforms and their id's in the API
-platforms <- data.frame(name = c("iOS",
-                                 "Mac",
-                                 "Nintendo 64",
-                                 "Nintendo Gamecube",
-                                 "Wii",
-                                 "Wii U",
-                                 "Nintendo DS",
-                                 "Nintendo 3DS",
-                                 "PlayStation",
-                                 "PlayStation 2",
-                                 "PlayStation 3",
-                                 "PlayStation 4",
-                                 "PC (Microsoft Windows)",
-                                 "Xbox",
-                                 "Xbox 360",
-                                 "Xbox One"),
-                        value = c("39", "14", "4", "21", "5", "41", "20", "37", 
-                                  "7", "8", "9", "48", "6", "11", "12", "49"))
 
-#data frame containing category names and their API names
-category <- data.frame(name = c("Genre",
-                                "Year",
-                                "Company",
-                                "Game Engine",
-                                "Platform",
-                                "Theme"),
-                       value = c("genres",
-                                 "release_dates.y",
-                                 "companies",
-                                 "game_engines",
-                                 "release_dates.platform",
-                                 "themes"))
+topData <- function(field, fieldId, year, limit) {
+  url <- paste0("https://api-2445582011268.apicast.io/games/?fields=name,total_rating&order=total_rating:desc&filter[", 
+                field, "][eq]=", fieldId, "&filter[release_dates.y][gte]=", year[1], 
+                "&filter[release_dates.y][lte]=", year[2],"&limit=", limit)
+  response <- GET(url, add_headers(.headers = c("user-key" = key, "Accept" = "application/json")))
+  body <- content(response, "text")
+  return(fromJSON(body))
+}
 
 #gets 50 names of given category (e.g. themes, genres, etc.)
 getCategoryIds <- function(category) {
@@ -48,12 +24,16 @@ getCategoryIds <- function(category) {
 }
 
 #plots top 5 games based on field, id, fieldName, and secondary field name *field2*
-plotDataTop <- function(field, id, fieldName, field2) {
-  data <- compareField(field, id, 5)
+plotDataTop <- function(field, id, fieldName, field2, year, limit) {
+  dataCat <- topData(field, id, year, limit)
   name <- idToName(id, field2)
-  ggplot(data) + geom_bar(aes(x=name, y=total_rating), stat="identity", fill="gray8") + 
-    coord_flip() + theme(legend.position="none") + ggtitle(paste0("Comparison with the top five games for ", fieldName)) +
-    ylab("Rating(%)") + xlab("Name of Game")
+  return(plot_ly(data = dataCat, x = dataCat$name, y = dataCat$total_rating, type = 'bar', marker = list(color = "rgb(106,227, 0)"), text = "Game: ")) 
+  #%>% layout(xaxis = "Name of Game", yaxis = "Rating(%)", title = "Playlist Features")
 }
 
-
+#data frame containing category names and their API names
+categoryData <- function() {
+  category <- data.frame(name = c("Genre", "Company", "Game Engine", "Platform", "Theme"),
+                         value = c("genres", "companies", "game_engines", "platforms", "themes"))
+  return(category)
+}
