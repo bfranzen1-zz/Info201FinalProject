@@ -5,9 +5,9 @@ account: bfranzen
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 242465
-bundleId: 1107857
+bundleId: 1117919
 url: https://bfranzen.shinyapps.io/videogamedb/
-when: 1512101923.2359
+when: 1512527895.27608
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: README.md
