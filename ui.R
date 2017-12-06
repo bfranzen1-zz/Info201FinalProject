@@ -58,12 +58,8 @@ ui <- fluidPage(
                    uiOutput("categoryChoices"),
                    plotlyOutput("categoryPlot", width = "100%", height = "500px")
                    )
-<<<<<<< Updated upstream
-               )
-      )
-=======
-             )
+              )
+            
         )
->>>>>>> Stashed changes
     )
 )
