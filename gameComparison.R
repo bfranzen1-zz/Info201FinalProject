@@ -2,7 +2,6 @@ library(httr)
 library(jsonlite)
 library(dplyr)
 library(magrittr)
-key <- '240369357eb62e10e6d8cffc39b8eef5'
 
 #Function that takes field (endpoint in API) to compare with, the fielId, and
 #a game limit. Returns a dataframe containing the id, name, and field value of the

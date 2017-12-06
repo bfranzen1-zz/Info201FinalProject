@@ -2,7 +2,7 @@ library(httr)
 library(jsonlite)
 library(dplyr)
 library(magrittr)
-key <- '240369357eb62e10e6d8cffc39b8eef5'
+library(ggplot2)
 
 topData <- function(field, fieldId, year, limit) {
   url <- paste0("https://api-2445582011268.apicast.io/games/?fields=name,total_rating&order=total_rating:desc&filter[", 
@@ -27,8 +27,11 @@ getCategoryIds <- function(category) {
 plotDataTop <- function(field, id, fieldName, field2, year, limit) {
   dataCat <- topData(field, id, year, limit)
   name <- idToName(id, field2)
-  return(plot_ly(data = dataCat, x = dataCat$name, y = dataCat$total_rating, type = 'bar', marker = list(color = "rgb(106,227, 0)"), text = "Game: ")) 
-  #%>% layout(xaxis = "Name of Game", yaxis = "Rating(%)", title = "Playlist Features")
+  plot_ly(data = dataCat, x = dataCat$name, y = dataCat$total_rating, type = 'bar',
+          marker = list(color = "rgb(106,227, 0)", line = list(color = 'rgb(8,48,107)', width = 1.5)), 
+          text = paste0("Rating of, ", dataCat$name, ": ", round(dataCat$total_rating, digits = 2))) %>% 
+          layout(xaxis = list(title = paste("Top", limit, "games")), 
+                 yaxis = list(title ="Total rating(%)"), margin = list(b = 200), title = paste0(name, "- Top Rated Games"))
 }
 
 #data frame containing category names and their API names

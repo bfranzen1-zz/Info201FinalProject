@@ -141,6 +141,5 @@ server <- function(input, output) {
     } else if (input$categoryField == "Theme") {
       plotDataTop("themes", catId$id, cat$name, "themes/", input$yearSlider, input$countSlider)
     }
-    
   })
 }

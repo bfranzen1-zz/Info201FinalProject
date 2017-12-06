@@ -52,12 +52,13 @@ ui <- fluidPage(
                                "Number of Games:",
                                min = 1,
                                max = 50,
-                               value = 10,
+                               value = 5,
                                step = 1)
                  ),
                  mainPanel(
                    uiOutput("categoryChoices"),
-                   plotlyOutput("categoryPlot"))
+                   plotlyOutput("categoryPlot", width = "100%", height = "500px")
+                   )
                )
       )
     )
