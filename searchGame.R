@@ -1,5 +1,6 @@
 library(httr)
 library(jsonlite)
+key <- '240369357eb62e10e6d8cffc39b8eef5'
 
 #function that returns game data
 gameData <- function(id) {
